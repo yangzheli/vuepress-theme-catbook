@@ -1,33 +1,38 @@
 <template>
-  <main class="home" :aria-labelledby="header.image !== null ? 'header-image' : null">
+  <main
+    class="home"
+    :aria-labelledby="header.image !== null ? 'header-image' : null"
+  >
     <header class="header">
       <a v-if="header.image" href="/" class="header-image">
-        <img :src="$withBase(header.image)" alt="avatar" />
+        <img :src="header.image" alt="avatar" />
       </a>
 
-      <span v-if="header.name !== null" class="header-name">{{ header.name || 'name' }}</span>
+      <span v-if="header.name" class="header-name">{{ header.name }}</span>
 
-      <span v-if="header.job !== null" class="header-job">{{ header.job || 'job' }}</span>
+      <span v-if="header.job" class="header-job">{{ header.job }}</span>
 
-      <span v-if="header.msg !== null" class="header-msg">{{ header.msg || 'msg' }}</span>
+      <span v-if="header.msg" class="header-msg">{{ header.msg }}</span>
 
-      <nav v-for="item in [1,2,3]" class="nav">
+      <nav v-for="(category, index) in categories" :key="index" class="nav">
         <ul class="nav-list">
           <li class="nav-item">
-            <a href="/test">test</a>
+            <a href="/test">{{ category }}</a>
           </li>
         </ul>
       </nav>
     </header>
 
     <div class="archive">
-      <p class="archive-year">{{posts}}</p>
-      <li>
-        <time class="archive-date" datetime>Apr 30</time>
-        <div class="archive-title">
-          <a href="/">test</a>
-        </div>
-      </li>
+      <div v-for="(item, index) in posts" :key="index">
+        <!-- <p class="archive-year">{{ posts }}</p> -->
+        <li>
+          <time class="archive-date" datetime>{{ item.date }}</time>
+          <div class="archive-title">
+            <a :href="item.permalink">{{ item.title }}</a>
+          </div>
+        </li>
+      </div>
     </div>
   </main>
 </template>
@@ -45,10 +50,14 @@ export default {
       return this.data.header;
     },
 
-    posts(){
-      return this.$page;
-    }
-  }
+    posts() {
+      return this.$getAllPosts;
+    },
+
+    categories() {
+      return this.$getAllCategories;
+    },
+  },
 };
 </script>
 

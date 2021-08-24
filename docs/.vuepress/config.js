@@ -3,6 +3,7 @@ const { resolve } = require('path')
 module.exports = {
     title: 'Catbook',
     description: 'A simple and out-of-the-box VuePress theme',
+    base: '/',
     head: [
         ['link', { rel: 'icon', type: "image/x-icon", href: '/img/logo.ico' }],
         ['script', { src: 'https://cdn.bootcss.com/jquery/3.4.1/jquery.js' }]
