@@ -4,29 +4,35 @@
     :aria-labelledby="header.image !== null ? 'header-image' : null"
   >
     <header class="header">
-      <a v-if="header.image" href="/" class="header-image">
-        <img :src="header.image" alt="avatar" />
-      </a>
+      <div class="header-content">
+        <a v-if="header.image" href="/" class="header-image">
+          <img :src="header.image" alt="avatar" />
+        </a>
 
-      <span v-if="header.name" class="header-name">{{ header.name }}</span>
+        <span v-if="header.name" class="header-name">{{ header.name }}</span>
 
-      <span v-if="header.job" class="header-job">{{ header.job }}</span>
+        <span v-if="header.job" class="header-job">{{ header.job }}</span>
 
-      <span v-if="header.msg" class="header-msg">{{ header.msg }}</span>
+        <span v-if="header.msg" class="header-msg">{{ header.msg }}</span>
 
-      <nav v-for="(category, index) in categories" :key="index" class="nav">
-        <ul class="nav-list">
-          <li class="nav-item">
-            <a href="/test">{{ category }}</a>
-          </li>
-        </ul>
-      </nav>
+        <nav class="nav">
+          <ul
+            v-for="(category, index) in categories"
+            :key="index"
+            class="nav-list"
+          >
+            <li class="nav-item">
+              <a href="/test">{{ category }}</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
 
-    <div class="archive">
-      <div v-for="(item, index) in posts" :key="index">
+    <div class="content">
+      <div class="archive">
         <!-- <p class="archive-year">{{ posts }}</p> -->
-        <li>
+        <li v-for="(item, index) in posts" :key="index">
           <time class="archive-date" datetime>{{ item.date }}</time>
           <div class="archive-title">
             <a :href="item.permalink">{{ item.title }}</a>
@@ -65,47 +71,53 @@ export default {
 .home {
   position: relative;
   display: block;
-  max-width: $homePageWidth;
+  z-index: 0;
+  min-height: 40rem;
   margin: ($navbarHeight + 1rem) auto;
+  padding-bottom: 2rem;
+  background: $contentBg;
+  border-radius: 15px;
+  box-shadow: 0 0 2px 2px $shadowColor;
 
   header {
     position: absolute;
     z-index: 1;
     top: 0;
-    width: 18rem;
-    min-height: 32rem;
-    padding: 8rem 0;
     background-color: $headerBg;
-    text-align: center;
     border-radius: $borderRadius;
     box-shadow: 0 0 2px 2px $shadowColor;
 
-    .header-image img {
-      border: none;
-      box-sizing: border-box;
-      height: 7rem;
-      width: 7rem;
-      border-radius: 50%;
+    .header-content {
+      position: absolute;
+      text-align: center;
 
-      &:hover {
-        cursor: pointer;
-        animation: jiggle 2s ease-in-out infinite;
+      .header-image img {
+        border: none;
+        box-sizing: border-box;
+        height: 7rem;
+        width: 7rem;
+        border-radius: 50%;
+
+        &:hover {
+          cursor: pointer;
+          animation: rotate 2s ease-in-out infinite;
+        }
       }
-    }
 
-    .header-name {
-      display: block;
-      color: $headerNameColor;
-      font-size: 1.5em;
-    }
+      .header-name {
+        display: block;
+        color: $headerNameColor;
+        font-size: 1.5em;
+      }
 
-    .header-job, .header-msg {
-      display: block;
-      margin-top: 0.2rem;
-      color: $headerJobColor;
-      font-size: 0.75em;
-      font-family: -apple-system, BlinkMacSystemFont, 'Titillium Web', 'Segoe UI', Roboto, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-      font-weight: 600;
+      .header-job, .header-msg {
+        display: block;
+        margin-top: 0.2rem;
+        color: $headerJobColor;
+        font-size: 0.75em;
+        font-family: -apple-system, BlinkMacSystemFont, 'Titillium Web', 'Segoe UI', Roboto, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+        font-weight: 600;
+      }
     }
   }
 
@@ -136,51 +148,122 @@ export default {
     }
   }
 
-  .archive {
-    min-height: 32rem;
-    padding: 8rem 2rem;
-    margin-left: 18rem;
-    background-color: $contentBg;
-    color: $archiveColor;
+  .content {
+    padding: 0.5rem;
 
-    ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
+    .archive {
+      color: $archiveColor;
 
       li {
         margin-bottom: 0.6rem;
+        padding: 0;
+        list-style: none;
+
+        & a {
+          text-decoration: none;
+          color: $archiveTitleColor;
+
+          &:hover, &:focus {
+            color: $archiveTitleHover;
+          }
+        }
+
+        .archive-date {
+          text-transform: uppercase;
+        }
+
+        .archive-title {
+          word-wrap: normal;
+        }
+
+        .archive-type {
+          font-size: 2rem;
+          font-weight: bold;
+          margin-bottom: 1rem;
+        }
+
+        .archive-year {
+          font-size: 1.2rem;
+          margin-top: 1.4rem;
+          margin-bottom: 0.6rem;
+        }
       }
     }
+  }
+}
 
-    & a {
-      text-decoration: none;
-      color: $archive_title;
+@media (min-width: 769px) {
+  .home {
+    max-width: $homePageWidth;
+    padding-top: 2.5rem;
+  }
 
-      &:hover, &:focus {
-        color: $archive_title_hover;
-      }
+  header {
+    width: 18rem;
+    height: 100%;
+    min-height: 100%;
+
+    .header-content {
+      margin-top: 8rem;
+      margin-bottom: 4rem;
+      overflow: hidden;
+      width: 100%;
     }
+  }
 
-    .archive-date {
-      text-transform: uppercase;
-    }
+  .content {
+    margin-left: 20rem;
 
-    .archive-title {
-      word-wrap: normal;
+    .archive {
+      max-width: 30rem;
+      margin-top: 5rem;
     }
+  }
+}
 
-    .archive-type {
-      font-size: 2rem;
-      font-weight: bold;
-      margin-bottom: 1rem;
-    }
+@media (max-width: 768px) {
+  .home {
+    padding-top: 16rem;
+    min-height: 75%;
+    max-width: 92%;
+  }
 
-    .archive-year {
-      font-size: 1.2rem;
-      margin-top: 1.4rem;
-      margin-bottom: 0.6rem;
+  header {
+    width: 100%;
+    height: 9rem;
+
+    .header-content {
+      margin-top: 3rem !important;
+      width: 100%;
     }
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .archive {
+    margin-top: 2rem;
+    margin-left: 1.2rem;
+    margin-right: 1.2rem;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  25% {
+    transform: rotate(-3deg);
+  }
+
+  50% {
+    transform: rotate(0);
+  }
+
+  75% {
+    transform: rotate(3deg);
   }
 }
 </style>

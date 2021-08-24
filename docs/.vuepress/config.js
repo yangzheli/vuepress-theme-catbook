@@ -15,7 +15,6 @@ module.exports = {
             { text: '目次', link: '/catalog' },
             { text: 'Github', type: 'url', link: 'https://github.com/Chenyating' },
         ],
-        catalogUrl: '/_posts',
         lastUpdated: 'Last Updated',
         smoothScroll: true,
         pageNum: 10,

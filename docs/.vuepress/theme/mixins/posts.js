@@ -16,7 +16,6 @@ export default {
                     if (arr.indexOf(category) === -1) arr.push(category);
                 })
             })
-            console.log(arr)
             return arr;
         }
     }
