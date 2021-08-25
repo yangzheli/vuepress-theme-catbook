@@ -4,7 +4,6 @@ permalink: /pages/overview
 date: 2021-1-3
 categories:
     - frontend
-    - introduce
 ---
 
 关于前端的一些总结，持续更新中!

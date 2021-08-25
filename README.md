@@ -12,7 +12,7 @@ A simple and out-of-the-box VuePress theme mainly for bloggers.
 
 * Deploy to Github page
 
-### Setup
+## Setup
 
 clone the project 
 
@@ -45,3 +45,12 @@ module.exports = config({
 })
 ```
 
+## Todo list
+
+* Optimize the styles
+
+* Article pagination
+
+* Light and dark themes toggle
+
+* Comment plugin

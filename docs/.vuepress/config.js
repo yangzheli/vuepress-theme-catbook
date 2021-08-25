@@ -1,33 +1,14 @@
 const { resolve } = require('path')
+const themeConfig = require('./config/themeConfig.js')
+const plugins = require('./config/plugins.js')
 
 module.exports = {
     title: 'Catbook',
     description: 'A simple and out-of-the-box VuePress theme',
     base: '/',
     head: [
-        ['link', { rel: 'icon', type: "image/x-icon", href: '/img/logo.ico' }],
-        ['script', { src: 'https://cdn.bootcss.com/jquery/3.4.1/jquery.js' }]
+        ['link', { rel: 'icon', type: "image/x-icon", href: '/home/favicon.ico' }],
     ],
-    themeConfig: {
-        author: 'yangzheli',
-        nav: [
-            { text: '鱼', link: '/' },
-            { text: '目次', link: '/catalog' },
-            { text: 'Github', type: 'url', link: 'https://github.com/Chenyating' },
-        ],
-        lastUpdated: 'Last Updated',
-        smoothScroll: true,
-        pageNum: 10,
-        footer: ''
-    },
-    markdown: {
-        lineNumbers: true
-    },
-    configureWebpack: {
-        resolve: {
-            alias: {
-                '@': resolve(__dirname, './public'),
-            }
-        }
-    }
+    themeConfig: themeConfig,
+    plugins: plugins
 }

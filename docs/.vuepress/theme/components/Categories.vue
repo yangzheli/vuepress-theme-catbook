@@ -16,7 +16,7 @@ import Header from "@theme/components/Header.vue";
 import Content from "@theme/components/Content.vue";
 
 export default {
-  name: "Home",
+  name: "Categories",
 
   components: {
     MainLayout,

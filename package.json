@@ -27,7 +27,9 @@
   },
   "homepage": "https://github.com/yangzheli/vuepress-theme-catbook#readme",
   "devDependencies": {
+    "@vuepress/plugin-back-to-top": "^1.8.2",
     "eslint": "^7.32.0",
-    "vuepress": "^1.8.2"
+    "vuepress": "^1.8.2",
+    "vuepress-plugin-comment": "^0.7.3"
   }
 }
