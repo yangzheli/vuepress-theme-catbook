@@ -1,25 +1,25 @@
 module.exports = {
-  author: 'yangzheli',
+  author: "yangzheli",
   nav: [
-      { text: 'Home', link: '/' },
+      { text: "Home", link: "/" },
       {
-          text: 'Theme',
-          ariaLabel: 'Theme Menu',
+          text: "Theme",
+          ariaLabel: "Theme Menu",
           items: [
-              { text: 'Light', link: '/' },
-              { text: 'Dark', link: '/' }
+              { text: "Light", link: "/" },
+              { text: "Dark", link: "/" }
           ]
       },
-      { text: 'About', link: '/about/'},
-      { text: 'Github', link: 'https://github.com/yangzheli/vuepress-theme-catbook' }
+      { text: "About", link: "/about/" },
+      { text: "Github", link: "https://github.com/yangzheli/vuepress-theme-catbook" }
   ],
   pageNum: 10,
   smoothScroll: true,
-  footer: '',
-  sidebar: 'auto',
+  footer: "",
+  sidebar: "auto",
   sidebarDepth: 2,
   editLinks: true,
-  lastUpdated: '上次更新',
+  lastUpdated: "上次更新",
   nextLinks: true,
   prevLinks: true
 }

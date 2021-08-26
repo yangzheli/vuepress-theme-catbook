@@ -1,14 +1,14 @@
 <template>
   <div class="archive">
-    <!-- <p class="archive-year">{{ posts }}</p>  -->
-    <li v-for="(item, index) in posts" :key="index">
-      <time class="archive-date">{{ item.frontmatter.date }}</time>
-      <div class="archive-title">
-        <a :href="item.path || item.frontmatter.permalink">{{
-          item.frontmatter.title
-        }}</a>
-      </div>
-    </li>
+    <div v-for="(value, key) in archives" :key="key">
+      <p :class="isCategory ? 'archive-type' : 'archive-year'">{{ value }}</p>
+      <li v-for="(item, index) in posts[value]" :key="index">
+        <time class="archive-date">{{ item.frontmatter.date }}</time>
+        <div class="archive-title">
+          <a :href="item.path || item.frontmatter.permalink">{{item.frontmatter.title}}</a>
+        </div>
+      </li>
+    </div>
   </div>
 </template>
 
@@ -16,12 +16,27 @@
 export default {
   name: "Content",
 
-  computed: {
-    posts() {
-      return this.$filterPosts;
-    },
+  props: {
+    isCategory: Boolean
   },
-};
+
+  computed: {
+    archives() {
+      if (!this.isCategory) return this.sortPostsYear
+      const path = this.$route.path
+      const match = path.match(/(?<=\/)[\w]+/g)
+      return [match[match.length - 1]]
+    },
+
+    posts() {
+      return this.isCategory ? this.$categorizePosts : this.$annualPosts
+    },
+
+    sortPostsYear() {
+      return Object.keys(this.$annualPosts).sort((a, b) => b - a)
+    }
+  }
+}
 </script>
 
 <style lang="stylus" scoped>
@@ -42,12 +57,10 @@ export default {
       }
     }
 
-    .archive-date {
-      text-transform: uppercase;
-    }
-
-    .archive-title {
-      word-wrap: normal;
+    .archive-year {
+      font-size: 1.2rem;
+      margin-top: 1.4rem;
+      margin-bottom: 0.6rem;
     }
 
     .archive-type {
@@ -56,10 +69,12 @@ export default {
       margin-bottom: 1rem;
     }
 
-    .archive-year {
-      font-size: 1.2rem;
-      margin-top: 1.4rem;
-      margin-bottom: 0.6rem;
+    .archive-date {
+      text-transform: uppercase;
+    }
+
+    .archive-title {
+      word-wrap: normal;
     }
   }
 }

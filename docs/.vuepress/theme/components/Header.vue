@@ -11,15 +11,9 @@
     <span v-if="header.msg" class="header-msg">{{ header.msg }}</span>
 
     <nav class="nav">
-      <ul
-        v-for="(posts, category) in categories"
-        :key="category"
-        class="nav-list"
-      >
+      <ul v-for="(category, index) in categories" :key="index" class="nav-list">
         <li class="nav-item">
-          <a :href="'/categories/' + encodeURIComponent(category)">{{
-            category
-          }}</a>
+          <router-link :to="{ path: category.path, query: {id:2}}">{{ category.title }}</router-link>
         </li>
       </ul>
     </nav>
@@ -32,18 +26,18 @@ export default {
 
   computed: {
     data() {
-      return this.$page.frontmatter;
+      return this.$page.frontmatter
     },
 
     header() {
-      return this.data.header;
+      return this.data.header
     },
 
     categories() {
-      return this.$categorizePosts;
-    },
-  },
-};
+      return this.$getCategories
+    }
+  }
+}
 </script>
 
 <style lang="stylus" scoped>

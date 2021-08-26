@@ -1,6 +1,7 @@
 ---
 title: About me
 permalink: /about
+sidebar: false
 hidden: true
 header:
   image: /home/doraemon.jpg

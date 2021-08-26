@@ -1,10 +1,11 @@
-// eslint-disable-next-line
 module.exports = {
     "env": {
         "browser": true,
+        "commonjs": true,
         "es2021": true
     },
     "extends": "eslint:recommended",
+    "parser":"vue-eslint-parser",
     "parserOptions": {
         "ecmaVersion": 12,
         "sourceType": "module"

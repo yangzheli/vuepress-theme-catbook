@@ -4,9 +4,9 @@ export const endingSlashRE = /\/$/
 export const outboundRE = /^[a-z]+:/i
 
 export function normalize(path) {
-  return decodeURI(path)
-    .replace(hashRE, '')
-    .replace(extRE, '')
+  return decodeURI(path).
+    replace(hashRE, "").
+    replace(extRE, "")
 }
 
 export function getHash(path) {
@@ -33,13 +33,13 @@ export function ensureExt(path) {
     return path
   }
   const hashMatch = path.match(hashRE)
-  const hash = hashMatch ? hashMatch[0] : ''
+  const hash = hashMatch ? hashMatch[0] : ""
   const normalized = normalize(path)
 
   if (endingSlashRE.test(normalized)) {
     return path
   }
-  return normalized + '.html' + hash
+  return normalized + ".html" + hash
 }
 
 export function isActive(route, path) {
@@ -56,7 +56,7 @@ export function isActive(route, path) {
 export function resolvePage(pages, rawPath, base) {
   if (isExternal(rawPath)) {
     return {
-      type: 'external',
+      type: "external",
       path: rawPath
     }
   }
@@ -66,10 +66,8 @@ export function resolvePage(pages, rawPath, base) {
   const path = normalize(rawPath)
   for (let i = 0; i < pages.length; i++) {
     if (normalize(pages[i].regularPath) === path) {
-      return Object.assign({}, pages[i], {
-        type: 'page',
-        path: ensureExt(pages[i].path)
-      })
+      return { ...pages[i], type: "page",
+        path: ensureExt(pages[i].path) }
     }
   }
   console.error(`[vuepress] No matching page found for sidebar item "${rawPath}"`)
@@ -78,15 +76,15 @@ export function resolvePage(pages, rawPath, base) {
 
 function resolvePath(relative, base, append) {
   const firstChar = relative.charAt(0)
-  if (firstChar === '/') {
+  if (firstChar === "/") {
     return relative
   }
 
-  if (firstChar === '?' || firstChar === '#') {
+  if (firstChar === "?" || firstChar === "#") {
     return base + relative
   }
 
-  const stack = base.split('/')
+  const stack = base.split("/")
 
   // remove trailing segment if:
   // - not appending
@@ -96,22 +94,22 @@ function resolvePath(relative, base, append) {
   }
 
   // resolve relative path
-  const segments = relative.replace(/^\//, '').split('/')
+  const segments = relative.replace(/^\//, "").split("/")
   for (let i = 0; i < segments.length; i++) {
     const segment = segments[i]
-    if (segment === '..') {
+    if (segment === "..") {
       stack.pop()
-    } else if (segment !== '.') {
+    } else if (segment !== ".") {
       stack.push(segment)
     }
   }
 
   // ensure leading slash
-  if (stack[0] !== '') {
-    stack.unshift('')
+  if (stack[0] !== "") {
+    stack.unshift("")
   }
 
-  return stack.join('/')
+  return stack.join("/")
 }
 
 /**
@@ -129,7 +127,7 @@ export function resolveSidebarItems(page, regularPath, site, localePath) {
     : themeConfig
 
   const pageSidebarConfig = page.frontmatter.sidebar || localeConfig.sidebar || themeConfig.sidebar
-  if (pageSidebarConfig === 'auto') {
+  if (pageSidebarConfig === "auto") {
     return resolveHeaders(page)
   }
 
@@ -138,11 +136,11 @@ export function resolveSidebarItems(page, regularPath, site, localePath) {
     return []
   } else {
     const { base, config } = resolveMatchingConfig(regularPath, sidebarConfig)
-    if (config === 'auto') {
+    if (config === "auto") {
       return resolveHeaders(page)
     }
     return config
-      ? config.map(item => resolveItem(item, pages, base))
+      ? config.map((item) => resolveItem(item, pages, base))
       : []
   }
 }
@@ -153,38 +151,40 @@ export function resolveSidebarItems(page, regularPath, site, localePath) {
  */
 function resolveHeaders(page) {
   const headers = groupHeaders(page.headers || [])
-  return [{
-    type: 'group',
+  return [
+{
+    type: "group",
     collapsable: false,
     title: page.title,
     path: null,
-    children: headers.map(h => ({
-      type: 'auto',
+    children: headers.map((h) => ({
+      type: "auto",
       title: h.title,
       basePath: page.path,
-      path: page.path + '#' + h.slug,
+      path: page.path + "#" + h.slug,
       children: h.children || []
     }))
-  }]
+  }
+]
 }
 
 export function groupHeaders(headers) {
   // group h3s under h2
-  headers = headers.map(h => Object.assign({}, h))
+  headers = headers.map((h) => ({ ...h }))
   let lastH2
-  headers.forEach(h => {
+  headers.forEach((h) => {
     if (h.level === 2) {
       lastH2 = h
     } else if (lastH2) {
       (lastH2.children || (lastH2.children = [])).push(h)
     }
   })
-  return headers.filter(h => h.level === 2)
+  return headers.filter((h) => h.level === 2)
 }
 
 export function resolveNavLinkItem(linkItem) {
   return Object.assign(linkItem, {
-    type: linkItem.items && linkItem.items.length ? 'links' : 'link'
+    type: linkItem.items && linkItem.items.length ? "links" : "link"
   })
 }
 
@@ -196,7 +196,7 @@ export function resolveNavLinkItem(linkItem) {
 export function resolveMatchingConfig(regularPath, config) {
   if (Array.isArray(config)) {
     return {
-      base: '/',
+      base: "/",
       config: config
     }
   }
@@ -214,11 +214,11 @@ export function resolveMatchingConfig(regularPath, config) {
 function ensureEndingSlash(path) {
   return /(\.html|\/)$/.test(path)
     ? path
-    : path + '/'
+    : path + "/"
 }
 
 function resolveItem(item, pages, base, groupDepth = 1) {
-  if (typeof item === 'string') {
+  if (typeof item === "string") {
     return resolvePage(pages, item, base)
   } else if (Array.isArray(item)) {
     return Object.assign(resolvePage(pages, item[0], base), {
@@ -232,12 +232,12 @@ function resolveItem(item, pages, base, groupDepth = 1) {
       })
     }
     return {
-      type: 'group',
+      type: "group",
       path: item.path,
       title: item.title,
       sidebarDepth: item.sidebarDepth,
       initialOpenGroupIndex: item.initialOpenGroupIndex,
-      children: children.map(child => resolveItem(child, pages, base, groupDepth + 1)),
+      children: children.map((child) => resolveItem(child, pages, base, groupDepth + 1)),
       collapsable: item.collapsable !== false
     }
   }
@@ -245,6 +245,6 @@ function resolveItem(item, pages, base, groupDepth = 1) {
 
 // 将 yyyy-mm-dd 日期转换为时间戳
 export function getTimestamp(date) {
-  date.replace(/-/g, '/');
-  return new Date(date).getTime();
+  date.replace(/-/g, "/")
+  return new Date(date).getTime()
 }

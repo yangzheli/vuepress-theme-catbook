@@ -2,14 +2,10 @@
   "name": "vuepress-theme-catbook",
   "version": "0.0.1",
   "description": "A simple and out-of-the-box VuePress theme",
-  "main": "docs/theme/index.js",
-  "directories": {
-    "doc": "docs"
-  },
   "scripts": {
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
-    "lint": "eslint docs",
+    "lint": "eslint docs --fix --ext .js,.ts,.vue",
     "deploy": "sh deploy.sh"
   },
   "repository": {
@@ -17,8 +13,7 @@
     "url": "git+https://github.com/yangzheli/vuepress-theme-catbook.git"
   },
   "keywords": [
-    "VuePress",
-    "theme"
+    "VuePress theme"
   ],
   "author": "yangzheli",
   "license": "MIT",
@@ -29,6 +24,7 @@
   "devDependencies": {
     "@vuepress/plugin-back-to-top": "^1.8.2",
     "eslint": "^7.32.0",
+    "eslint-plugin-vue": "^7.16.0",
     "vuepress": "^1.8.2",
     "vuepress-plugin-comment": "^0.7.3"
   }

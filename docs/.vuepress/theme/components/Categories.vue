@@ -5,15 +5,15 @@
     </template>
 
     <template #content>
-      <Content></Content>
+      <Content :isCategory="true"></Content>
     </template>
   </MainLayout>
 </template>
 
 <script>
-import MainLayout from "@theme/components/MainLayout.vue";
-import Header from "@theme/components/Header.vue";
-import Content from "@theme/components/Content.vue";
+import MainLayout from "@theme/components/MainLayout.vue"
+import Header from "@theme/components/Header.vue"
+import Content from "@theme/components/Content.vue"
 
 export default {
   name: "Categories",
@@ -23,5 +23,5 @@ export default {
     Header,
     Content
   }
-};
+}
 </script>

@@ -11,9 +11,9 @@
 </template>
 
 <script>
-import MainLayout from "@theme/components/MainLayout.vue";
-import Header from "@theme/components/Header.vue";
-import Content from "@theme/components/Content.vue";
+import MainLayout from "@theme/components/MainLayout.vue"
+import Header from "@theme/components/Header.vue"
+import Content from "@theme/components/Content.vue"
 
 export default {
   name: "Home",
@@ -23,5 +23,5 @@ export default {
     Header,
     Content
   }
-};
+}
 </script>

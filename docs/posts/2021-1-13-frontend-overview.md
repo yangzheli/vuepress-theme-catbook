@@ -1,9 +1,8 @@
 ---
 title: 前端总结
-permalink: /pages/overview
-date: 2021-1-3
 categories:
     - frontend
+    - overview
 ---
 
 关于前端的一些总结，持续更新中!
