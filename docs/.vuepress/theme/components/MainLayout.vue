@@ -11,6 +11,8 @@
 </template>
 
 <style lang="stylus" scoped>
+@import "../styles/mixin.styl"
+
 .home {
   position: relative;
   display: block;
@@ -18,7 +20,7 @@
   min-height: 40rem;
   margin: ($navbarHeight + 1rem) auto;
   padding-bottom: 2rem;
-  background: $contentBg;
+  bg-color($contentBg);
   border-radius: 15px;
   box-shadow: 0 0 2px 2px $shadowColor;
 

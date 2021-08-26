@@ -1,0 +1,21 @@
+// https://blog.csdn.net/Bottle_jiu/article/details/106585960
+
+@import "./palette.styl"
+
+// 获取背景颜色
+bg-color($color)
+  background-color: light[$color]
+
+  for theme in $theme 
+    [theme = {theme.name}] & {
+      background-color: theme[$color]  
+    }
+
+// 获取字体颜色
+font-color($color)
+  color: light[$color]
+
+  for theme in $theme 
+    [theme = {theme.name}] & {
+      color: theme[$color]  
+    }

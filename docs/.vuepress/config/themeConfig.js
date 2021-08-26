@@ -6,8 +6,8 @@ module.exports = {
           text: "Theme",
           ariaLabel: "Theme Menu",
           items: [
-              { text: "Light", link: "/" },
-              { text: "Dark", link: "/" }
+              { text: "light", theme: "light", link: "/" },
+              { text: "dark", theme: "dark", link: "/" }
           ]
       },
       { text: "About", link: "/about/" },

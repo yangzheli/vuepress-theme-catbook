@@ -13,7 +13,7 @@
     <nav class="nav">
       <ul v-for="(category, index) in categories" :key="index" class="nav-list">
         <li class="nav-item">
-          <router-link :to="{ path: category.path, query: {id:2}}">{{ category.title }}</router-link>
+          <router-link :to="{ path: category.path }">{{ category.title }}</router-link>
         </li>
       </ul>
     </nav>
