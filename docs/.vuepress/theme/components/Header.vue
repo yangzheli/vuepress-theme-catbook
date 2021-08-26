@@ -11,9 +11,15 @@
     <span v-if="header.msg" class="header-msg">{{ header.msg }}</span>
 
     <nav class="nav">
-      <ul v-for="(posts, category) in categories" :key="category" class="nav-list">
+      <ul
+        v-for="(posts, category) in categories"
+        :key="category"
+        class="nav-list"
+      >
         <li class="nav-item">
-          <a :href="'/categories/' + encodeURIComponent(category)">{{ category }}</a>
+          <a :href="'/categories/' + encodeURIComponent(category)">{{
+            category
+          }}</a>
         </li>
       </ul>
     </nav>
@@ -26,8 +32,6 @@ export default {
 
   computed: {
     data() {
-      console.log(this.$page)
-      console.log(this.$site)
       return this.$page.frontmatter;
     },
 
@@ -37,8 +41,8 @@ export default {
 
     categories() {
       return this.$categorizePosts;
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -2,9 +2,11 @@
   <div class="archive">
     <!-- <p class="archive-year">{{ posts }}</p>  -->
     <li v-for="(item, index) in posts" :key="index">
-      <time class="archive-date" datetime>{{ item.date }}</time>
+      <time class="archive-date">{{ item.frontmatter.date }}</time>
       <div class="archive-title">
-        <a :href="item.permalink">{{ item.title }}</a>
+        <a :href="item.path || item.frontmatter.permalink">{{
+          item.frontmatter.title
+        }}</a>
       </div>
     </li>
   </div>
@@ -16,9 +18,9 @@ export default {
 
   computed: {
     posts() {
-      return this.$getAllPosts;
-    }
-  }
+      return this.$filterPosts;
+    },
+  },
 };
 </script>
 
@@ -66,6 +68,10 @@ export default {
   .archive {
     max-width: 30rem;
     margin-top: 5rem;
+
+    .archive-date {
+      float: right;
+    }
   }
 }
 
