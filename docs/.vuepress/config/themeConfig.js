@@ -10,8 +10,7 @@ module.exports = {
               { text: "dark", theme: "dark", icon: "/home/m.png" }
           ]
       },
-      { text: "About", link: "/about/" },
-      { text: "Github", link: "https://github.com/yangzheli/vuepress-theme-catbook" }
+      { text: "About", link: "/about/" }
   ],
   pageNum: 10,
   smoothScroll: true,

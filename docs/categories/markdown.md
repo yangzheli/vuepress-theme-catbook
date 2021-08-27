@@ -1,6 +1,6 @@
 ---
-title: writing
-permalink: /categories/writing
+title: markdown
+permalink: /categories/markdown
 layout: category
 header:
   image: /home/doraemon.jpg
