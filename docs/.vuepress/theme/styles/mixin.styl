@@ -6,6 +6,9 @@
 bg-color($color)
   background-color: light[$color]
 
+  [theme = "dark"]
+    background-color: dark[$color]
+
   for theme in $theme 
     [theme = {theme.name}] & {
       background-color: theme[$color]  

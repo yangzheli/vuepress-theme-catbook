@@ -21,7 +21,7 @@ export default {
   components: {
     MainLayout,
     Header,
-    Content
-  }
+    Content,
+  },
 }
 </script>

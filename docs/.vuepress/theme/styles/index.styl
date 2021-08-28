@@ -4,11 +4,12 @@
 @require './arrow'
 @require './wrapper'
 @require './toc'
+@require './mixin.styl'
 
 html, body
   padding 0
   margin 0
-  background-color #fff
+  bg-color($bg)
 
 body
   font-family -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif
@@ -30,6 +31,7 @@ body
   background-color #fff
   box-sizing border-box
   border-bottom 1px solid $borderColor
+  box-shadow 0 8px 24px -2px rgba(0 0 0 5%);
 
 .sidebar-mask
   position fixed
