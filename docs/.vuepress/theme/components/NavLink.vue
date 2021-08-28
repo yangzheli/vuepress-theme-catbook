@@ -24,8 +24,8 @@
 </template>
 
 <script>
-import nprogress from "nprogress";
-import { isExternal, isMailto, isTel, ensureExt } from "../util";
+import nprogress from "nprogress"
+import { isExternal, isMailto, isTel, ensureExt } from "../util"
 
 export default {
   name: "NavLink",
@@ -38,67 +38,65 @@ export default {
 
   computed: {
     link() {
-      return ensureExt(this.item.link);
+      return ensureExt(this.item.link)
     },
 
     exact() {
       if (this.$site.locales) {
-        return Object.keys(this.$site.locales).some(
-          rootLink => rootLink === this.link
-        );
+        return Object.keys(this.$site.locales).some((rootLink) => rootLink === this.link)
       }
-      return this.link === "/";
+      return this.link === "/"
     },
 
     isNonHttpURI() {
-      return isMailto(this.link) || isTel(this.link);
+      return isMailto(this.link) || isTel(this.link)
     },
 
     isBlankTarget() {
-      return this.target === "_blank";
+      return this.target === "_blank"
     },
 
     isInternal() {
-      return !isExternal(this.link) && !this.isBlankTarget;
+      return !isExternal(this.link) && !this.isBlankTarget
     },
 
     target() {
       if (this.isNonHttpURI) {
-        return null;
+        return null
       }
       if (this.item.target) {
-        return this.item.target;
+        return this.item.target
       }
-      return isExternal(this.link) ? "_blank" : "";
+      return isExternal(this.link) ? "_blank" : ""
     },
 
     rel() {
       if (this.isNonHttpURI) {
-        return null;
+        return null
       }
       if (this.item.rel === false) {
-        return null;
+        return null
       }
       if (this.item.rel) {
-        return this.item.rel;
+        return this.item.rel
       }
-      return this.isBlankTarget ? "noopener noreferrer" : null;
+      return this.isBlankTarget ? "noopener noreferrer" : null
     }
   },
 
   methods: {
     toggle(item) {
-      const { theme } = item;
-      nprogress.start();
-      document.body.setAttribute("theme", theme);
-      nprogress.done();
+      const { theme } = item
+      nprogress.start()
+      document.body.setAttribute("theme", theme)
+      nprogress.done()
     },
 
     focusoutAction() {
-      this.$emit("focusout");
+      this.$emit("focusout")
     }
   }
-};
+}
 </script>
 
 <style lang="stylus" scoped>
