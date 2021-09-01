@@ -127,6 +127,7 @@ export default {
   img {
     width: 0.8rem;
     padding: 0 2px;
+    border-radius: 50%;
   }
 
   span {

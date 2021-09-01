@@ -1,11 +1,13 @@
 <template>
-  <main class="home">
-    <header class="header">
-      <slot name="header"></slot>
-    </header>
+  <main>
+    <div class="home">
+      <header class="header">
+        <slot name="header"></slot>
+      </header>
 
-    <div class="content">
-      <slot name="content"></slot>
+      <div class="content">
+        <slot name="content"></slot>
+      </div>
     </div>
   </main>
 </template>
@@ -13,33 +15,36 @@
 <style lang="stylus" scoped>
 @import "../styles/mixin.styl"
 
-.home {
-  position: relative;
-  display: block;
+main {
   z-index: 0;
-  min-height: 40rem;
-  margin: ($navbarHeight + 1rem) auto;
-  padding-bottom: 2rem;
-  bg-color($contentBg);
-  border-radius: 15px;
-  box-shadow: 0 0 2px 2px $shadowColor;
+  margin: $navbarHeight auto;
+  padding: 0;
 
-  header {
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    background-color: $headerBg;
-    border-radius: $borderRadius;
+
+  .home {
+    position: relative;
+    min-height: 45rem;
+    bg-color($contentBg);
+    border-radius: 15px;
     box-shadow: 0 0 2px 2px $shadowColor;
-  }
 
-  .content {
-    padding: 0.5rem;
+    header {
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      background-color: $headerBg;
+      border-radius: $borderRadius;
+      box-shadow: 0 0 2px 2px $shadowColor;
+    }
+
+    .content {
+      padding: 0.5rem;
+    }
   }
 }
 
 @media (min-width: 769px) {
-  .home {
+  main {
     max-width: $homePageWidth;
     padding-top: 2.5rem;
 
@@ -56,7 +61,7 @@
 }
 
 @media (max-width: 768px) {
-  .home {
+  main {
     padding-top: 16rem;
     min-height: 75%;
     max-width: 92%;

@@ -9,6 +9,7 @@ bg-color($color)
   [theme = "dark"]
     background-color: dark[$color]
 
+  // It doesn't work when import in .styl
   for theme in $theme 
     [theme = {theme.name}] & {
       background-color: theme[$color]  
@@ -18,7 +19,22 @@ bg-color($color)
 font-color($color)
   color: light[$color]
 
+  [theme = "dark"]
+    color: dark[$color]
+
   for theme in $theme 
     [theme = {theme.name}] & {
       color: theme[$color]  
     }
+
+// 获取边框颜色
+border-color($color)
+  border-color: light[$color]
+
+  [theme = "dark"]
+    border-color: dark[$color]
+
+  for theme in $theme 
+    [theme = {theme.name}] & {
+      border-color: theme[$color]  
+    } 

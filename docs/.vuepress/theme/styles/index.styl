@@ -7,8 +7,11 @@
 @require './mixin.styl'
 
 html, body
+  height 100%
+  width 100%
   padding 0
   margin 0
+  font-color($htmlColor)
   bg-color($bg)
 
 body
@@ -28,9 +31,10 @@ body
   left 0
   right 0
   height $navbarHeight
-  background-color #fff
+  bg-color($navbarBg)
   box-sizing border-box
   border-bottom 1px solid $borderColor
+  border-color($border)
   box-shadow 0 8px 24px -2px rgba(0 0 0 5%);
 
 .sidebar-mask
