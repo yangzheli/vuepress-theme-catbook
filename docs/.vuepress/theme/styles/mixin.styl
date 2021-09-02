@@ -38,3 +38,15 @@ border-color($color)
     [theme = {theme.name}] & {
       border-color: theme[$color]  
     } 
+
+// 获取阴影
+shadow($color)
+  box-shadow: 0 0 20px 20px light[$color];
+  
+  [theme = "dark"]
+    box-shadow: 0 0 20px 20px dark[$color];
+
+  for theme in $theme 
+    [theme = {theme.name}] & {
+      box-shadow: 0 0 20px 20px theme[$color];
+    } 

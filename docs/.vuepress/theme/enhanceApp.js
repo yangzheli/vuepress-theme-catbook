@@ -1,4 +1,5 @@
 import posts from "./mixins/posts.js"
+import theme from "./mixins/theme.js"
 
 /* eslint-disable no-unused-vars */
 export default ({
@@ -8,4 +9,5 @@ export default ({
   siteData // 站点元数据
 }) => {
   Vue.mixin(posts)
+  Vue.mixin(theme)
 }

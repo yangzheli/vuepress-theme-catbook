@@ -1,5 +1,5 @@
 <template>
-  <div v-if="item.theme" class="nav-link theme">
+  <div v-if="item.theme" class="nav-link theme" :class="{'theme-active': item.theme === theme}">
     <img :src="item.icon" :alt="item.theme" />
     <span @click="toggle(item)">{{ item.text }}</span>
   </div>
@@ -33,7 +33,9 @@ export default {
   props: {
     item: {
       required: true
-    }
+    },
+
+    theme: String
   },
 
   computed: {
@@ -89,6 +91,8 @@ export default {
       const { theme } = item
       nprogress.start()
       document.body.setAttribute("theme", theme)
+      localStorage.setItem("theme", theme)
+      this.$emit("setTheme", theme)
       nprogress.done()
     },
 
@@ -101,10 +105,11 @@ export default {
 
 <style lang="stylus" scoped>
 .theme {
+  position: relative;
   padding: 0 0.8rem;
   line-height: 1.3rem;
 
-  &.router-link-active {
+  &.theme-active {
     color: $accentColor;
 
     &::after {
@@ -115,8 +120,8 @@ export default {
       border-top: 3px solid transparent;
       border-bottom: 3px solid transparent;
       position: absolute;
-      top: calc(50% - 2px);
-      left: 9px;
+      top: 30%;
+      left: 5px;
     }
   }
 

@@ -37,13 +37,13 @@
 </template>
 
 <script>
-import AlgoliaSearchBox from '@AlgoliaSearchBox'
-import SearchBox from '@SearchBox'
-import SidebarButton from '@theme/components/SidebarButton.vue'
-import NavLinks from '@theme/components/NavLinks.vue'
+import AlgoliaSearchBox from "@AlgoliaSearchBox"
+import SearchBox from "@SearchBox"
+import SidebarButton from "@theme/components/SidebarButton.vue"
+import NavLinks from "@theme/components/NavLinks.vue"
 
 export default {
-  name: 'Navbar',
+  name: "Navbar",
 
   components: {
     SidebarButton,
@@ -70,7 +70,7 @@ export default {
 
   mounted () {
     const MOBILE_DESKTOP_BREAKPOINT = 719 // refer to config.styl
-    const NAVBAR_VERTICAL_PADDING = parseInt(css(this.$el, 'paddingLeft')) + parseInt(css(this.$el, 'paddingRight'))
+    const NAVBAR_VERTICAL_PADDING = parseInt(css(this.$el, "paddingLeft")) + parseInt(css(this.$el, "paddingRight"))
     const handleLinksWrapWidth = () => {
       if (document.documentElement.clientWidth < MOBILE_DESKTOP_BREAKPOINT) {
         this.linksWrapMaxWidth = null
@@ -80,7 +80,7 @@ export default {
       }
     }
     handleLinksWrapWidth()
-    window.addEventListener('resize', handleLinksWrapWidth, false)
+    window.addEventListener("resize", handleLinksWrapWidth, false)
   }
 }
 

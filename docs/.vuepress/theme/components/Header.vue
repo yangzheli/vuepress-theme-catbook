@@ -41,6 +41,8 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+@import "../styles/mixin.styl"
+
 .header-content {
   position: absolute;
   text-align: center;
@@ -60,7 +62,7 @@ export default {
 
   .header-name {
     display: block;
-    color: $headerNameColor;
+    font-color($headerNameColor);
     font-size: 1.5em;
   }
 
@@ -90,11 +92,12 @@ export default {
       opacity: 0.8;
 
       & a {
-        color: $navColor;
+        font-color($navItemColor);
         font-size: 90%;
+        border-bottom: none;
 
         &:hover, &:focus {
-          color: $navHoverColor;
+          font-color($navHoverColor);
         }
       }
     }

@@ -9,8 +9,25 @@
         <slot name="content"></slot>
       </div>
     </div>
+
+    <div class="footer">{{ footer }}</div>
   </main>
 </template>
+
+<script>
+export default {
+  name: "MainLayout",
+
+  computed: {
+    footer() {
+      return (
+        this.$site.themeConfig.footer ||
+        "MIT Licensed | Copyright © 2021-present yangzheli"
+      )
+    },
+  },
+}
+</script>
 
 <style lang="stylus" scoped>
 @import "../styles/mixin.styl"
@@ -25,21 +42,28 @@ main {
     position: relative;
     min-height: 45rem;
     bg-color($contentBg);
-    border-radius: 15px;
-    box-shadow: 0 0 2px 2px $shadowColor;
 
     header {
       position: absolute;
       z-index: 1;
       top: 0;
-      background-color: $headerBg;
-      border-radius: $borderRadius;
-      box-shadow: 0 0 2px 2px $shadowColor;
+      border-radius: 15px;
+      shadow($shadowColor);
     }
 
     .content {
       padding: 0.5rem;
+      border-radius: 15px;
+      shadow($shadowColor);
     }
+  }
+
+  .footer {
+    padding: 2.5rem;
+    border-top: 1px solid #eaecef;
+    border-color($border);
+    text-align: center;
+    font-color($htmlColor);
   }
 }
 
@@ -55,20 +79,30 @@ main {
     }
 
     .content {
-      margin-left: 20rem;
+      min-height: 45rem;
+      margin-left: 18.5rem;
     }
   }
 }
 
 @media (max-width: 768px) {
   main {
-    padding-top: 16rem;
+    padding-top: 2.5rem;
     min-height: 75%;
     max-width: 92%;
 
-    header {
-      width: 100%;
-      height: 9rem;
+    .home{
+    padding-top: 9rem;
+      
+      header {
+        width: 100%;
+        height: 9rem;
+      }
+
+      .content {
+        min-height: 35rem;
+        padding-top: 5rem;
+      }
     }
   }
 }

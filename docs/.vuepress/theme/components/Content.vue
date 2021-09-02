@@ -43,6 +43,18 @@ export default {
 .archive {
   color: $archiveColor;
 
+  .archive-year {
+    font-size: 1.2rem;
+    margin-top: 1.4rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .archive-type {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
   li {
     margin-bottom: 0.6rem;
     padding: 0;
@@ -57,24 +69,20 @@ export default {
       }
     }
 
-    .archive-year {
-      font-size: 1.2rem;
-      margin-top: 1.4rem;
-      margin-bottom: 0.6rem;
-    }
-
-    .archive-type {
-      font-size: 2rem;
-      font-weight: bold;
-      margin-bottom: 1rem;
-    }
-
     .archive-date {
       text-transform: uppercase;
     }
 
     .archive-title {
       word-wrap: normal;
+
+      a {
+        color: #46bd87;
+
+        &:hover {
+          color: #87cdbd;
+        }
+      }
     }
   }
 }
@@ -82,7 +90,7 @@ export default {
 @media (min-width: 769px) {
   .archive {
     max-width: 30rem;
-    margin-top: 5rem;
+    margin: 5rem;
 
     .archive-date {
       float: right;

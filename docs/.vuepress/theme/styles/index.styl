@@ -1,6 +1,6 @@
 @require './config'
 @require './code'
-@require './custom-blocks'
+@require './custom-blocks.styl'
 @require './arrow'
 @require './wrapper'
 @require './toc'
@@ -22,7 +22,8 @@ body
   color $textColor
 
 .page
-  padding-left $sidebarWidth
+  // padding-left $sidebarWidth
+  bg-color($bg)
 
 .navbar
   position fixed
@@ -48,7 +49,7 @@ body
 
 .sidebar
   font-size 16px
-  background-color #fff
+  bg-color($bg)
   width $sidebarWidth
   position fixed
   z-index 10
@@ -58,7 +59,10 @@ body
   bottom 0
   box-sizing border-box
   border-right 1px solid $borderColor
+  border-color($border)
   overflow-y auto
+  .nav-links
+    border-color($border)
 
 {$contentClass}:not(.custom)
   @extend $wrapper
@@ -85,7 +89,7 @@ body
 
 a
   font-weight 500
-  color $accentColor
+  font-color($htmlColor)
   text-decoration none
 
 p a code

@@ -34,12 +34,12 @@
 </template>
 
 <script>
-import DropdownLink from '@theme/components/DropdownLink.vue'
-import { resolveNavLinkItem } from '../util'
-import NavLink from '@theme/components/NavLink.vue'
+import DropdownLink from "@theme/components/DropdownLink.vue"
+import { resolveNavLinkItem } from "../util"
+import NavLink from "@theme/components/NavLink.vue"
 
 export default {
-  name: 'NavLinks',
+  name: "NavLinks",
 
   components: {
     NavLink,
@@ -58,9 +58,9 @@ export default {
         const routes = this.$router.options.routes
         const themeLocales = this.$site.themeConfig.locales || {}
         const languageDropdown = {
-          text: this.$themeLocaleConfig.selectText || 'Languages',
-          ariaLabel: this.$themeLocaleConfig.ariaLabel || 'Select language',
-          items: Object.keys(locales).map(path => {
+          text: this.$themeLocaleConfig.selectText || "Languages",
+          ariaLabel: this.$themeLocaleConfig.ariaLabel || "Select language",
+          items: Object.keys(locales).map((path) => {
             const locale = locales[path]
             const text = themeLocales[path] && themeLocales[path].label || locale.lang
             let link
@@ -71,7 +71,7 @@ export default {
               // Try to stay on the same page
               link = currentLink.replace(this.$localeConfig.path, path)
               // fallback to homepage
-              if (!routes.some(route => route.path === link)) {
+              if (!routes.some((route) => route.path === link)) {
                 link = path
               }
             }
@@ -84,11 +84,9 @@ export default {
     },
 
     userLinks () {
-      return (this.nav || []).map(link => {
-        return Object.assign(resolveNavLinkItem(link), {
+      return (this.nav || []).map((link) => Object.assign(resolveNavLinkItem(link), {
           items: (link.items || []).map(resolveNavLinkItem)
-        })
-      })
+        }))
     },
 
     repoLink () {
@@ -108,15 +106,15 @@ export default {
       }
 
       const repoHost = this.repoLink.match(/^https?:\/\/[^/]+/)[0]
-      const platforms = ['GitHub', 'GitLab', 'Bitbucket']
+      const platforms = ["GitHub", "GitLab", "Bitbucket"]
       for (let i = 0; i < platforms.length; i++) {
         const platform = platforms[i]
-        if (new RegExp(platform, 'i').test(repoHost)) {
+        if (new RegExp(platform, "i").test(repoHost)) {
           return platform
         }
       }
 
-      return 'Source'
+      return "Source"
     }
   }
 }

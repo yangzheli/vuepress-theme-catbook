@@ -2,3 +2,6 @@
 index.js
 !.eslintrc.js
 !.vuepress
+Navbar.vue
+NavLinks.vue
+SidebarLink.vue

@@ -51,7 +51,7 @@
               class="dropdown-subitem"
             >
               <NavLink
-                :item="childSubItem"
+                :item="childSubItem" 
                 @focusout="
                   isLastItemOfArray(childSubItem, subItem.items) &&
                     isLastItemOfArray(subItem, item.items) &&
@@ -63,7 +63,8 @@
 
           <NavLink
             v-else
-            :item="subItem"
+            :item="subItem" :theme="theme"
+            @setTheme="getTheme"
             @focusout="isLastItemOfArray(subItem, item.items) && setOpen(false)"
           />
         </li>
@@ -73,12 +74,12 @@
 </template>
 
 <script>
-import NavLink from '@theme/components/NavLink.vue'
-import DropdownTransition from '@theme/components/DropdownTransition.vue'
-import last from 'lodash/last'
+import NavLink from "@theme/components/NavLink.vue"
+import DropdownTransition from "@theme/components/DropdownTransition.vue"
+import last from "lodash/last"
 
 export default {
-  name: 'DropdownLink',
+  name: "DropdownLink",
 
   components: {
     NavLink,
@@ -93,7 +94,8 @@ export default {
 
   data () {
     return {
-      open: false
+      open: false,
+      theme: document.body.getAttribute("theme") || "light"
     }
   },
 
@@ -127,6 +129,10 @@ export default {
     handleDropdown () {
       const isTriggerByTab = event.detail === 0
       if (isTriggerByTab) this.setOpen(!this.open)
+    },
+
+    getTheme (theme) {
+      this.theme = theme
     }
   }
 }

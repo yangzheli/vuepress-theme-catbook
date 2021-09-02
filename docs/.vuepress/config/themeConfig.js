@@ -14,7 +14,7 @@ module.exports = {
   ],
   pageNum: 10,
   smoothScroll: true,
-  footer: "",
+  footer: "MIT Licensed | Copyright © 2021-present yangzheli",
   sidebar: "auto",
   sidebarDepth: 2,
   repo: "https://github.com/yangzheli/vuepress-theme-catbook",
